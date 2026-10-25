@@ -63,3 +63,7 @@ See [Building](docs/BUILD.md), [Testing](docs/TESTING.md) and [Architecture](doc
 ## Version 1.1.1
 
 Matches Raven Backup's icon display method and corner transparency, while retaining the power symbol and red feather. The icon update passed 31 targeted live checks on Odin 2. See [Changelog](CHANGELOG.md).
+
+## License
+
+Licensed under **GPL-3.0-only**, matching Raven Backup. See [LICENSE](LICENSE).

@@ -1,0 +1,11 @@
+Raven App Control
+Copyright (C) 2026 Rsotbiemrptson
+
+The source code and included first-party artwork in this repository are
+licensed under GNU General Public License version 3 only (GPL-3.0-only).
+This license also applies to the published Raven App Control 1.1.1 release.
+See LICENSE for the complete terms.
+
+Raven App Control uses the Android SDK and the device's existing AYN factory
+service. Android SDK tools, AYN firmware, and private signing keys are not
+distributed in this repository.
