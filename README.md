@@ -1,10 +1,14 @@
 # Raven App Control
 
-<img src="docs/images/icon.png" alt="Raven App Control icon" width="96" />
+<img src="docs/images/icon.png" alt="Raven App Control" width="112">
 
-An Android app for AYN devices that uses the factory root service to disable and re-enable apps while preserving their data, with search, system-app filtering, and protection for essential components.
+**Your apps. Your control.**
 
-[Download 1.2.0](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.0/Raven-App-Control-1.2.0.apk) · [Latest release](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/latest)
+Disable and re-enable apps on AYN devices while preserving their installed files and data, with search, system-app filtering and protection for essential components.
+
+**Current release: 1.2.0** · Package: `dev.raven.control` · Version code: `4` · License: **GPL-3.0-only**
+
+[Download the APK](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.0/Raven-App-Control-1.2.0.apk) · [Release notes and checksums](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/tag/v1.2.0)
 
 ## Features
 
