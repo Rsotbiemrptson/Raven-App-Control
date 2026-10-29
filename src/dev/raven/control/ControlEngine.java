@@ -24,7 +24,10 @@ public final class ControlEngine {
   }
   apps.sort((a,b)->{int c=a.label.compareToIgnoreCase(b.label);return c==0?a.packageName.compareTo(b.packageName):c;});return apps;
  }
- public synchronized String setEnabled(String pkg,boolean enable) throws Exception {
+ public String setEnabled(String pkg,boolean enable) throws Exception {
+  synchronized(ControlEngine.class){return applyEnabled(pkg,enable);}
+ }
+ private String applyEnabled(String pkg,boolean enable) throws Exception {
   validatePackage(pkg);
   ApplicationInfo info=pm.getApplicationInfo(pkg,PackageManager.MATCH_DISABLED_COMPONENTS);
   if(!enable){String reason=new Protection(context).reason(info);if(reason!=null)throw new SecurityException(reason);}
@@ -43,7 +46,7 @@ public final class ControlEngine {
   if(actual!=enable||(!enable&&actualState!=PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER))throw new IllegalStateException("Android did not confirm the change. "+output);
   if(enable)history.edit().remove(key).commit();
   history.edit().putString("last",(enable?"Enabled ":"Disabled ")+info.loadLabel(pm)+" • "+new java.text.SimpleDateFormat("MMM d, HH:mm",Locale.getDefault()).format(new Date())).apply();
-  return info.loadLabel(pm)+(enable?" is enabled.":" is disabled until you enable it again.");
+  return info.loadLabel(pm)+(enable?" is enabled.":" is disabled.");
  }
  public String lastChange(){return history.getString("last","");}
 }

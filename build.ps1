@@ -4,7 +4,7 @@ param(
  [string]$BuildToolsVersion='35.0.0',
  [string]$JavaHome=$env:JAVA_HOME,
  [string]$Toolchain,
- [ValidateSet('app','fixture','tests')][string]$Target='app',
+ [ValidateSet('app','fixture','fixture2','tests')][string]$Target='app',
  [string]$SigningKey,
  [string]$KeyAlias='raven-app-control',
  [string]$BuildDirectory,
@@ -46,7 +46,7 @@ try{
   if(!$env:RAVEN_CONTROL_KEY_PASS){$env:RAVEN_CONTROL_KEY_PASS=$env:RAVEN_CONTROL_STORE_PASS}
  }
  $manifest=if($Target -eq 'app'){Join-Path $project 'AndroidManifest.xml'}else{Join-Path $project "tests/$($Target -replace 'tests','instrumentation')/AndroidManifest.xml"}
- $sources=if($Target -eq 'fixture'){@(Join-Path $project 'tests/fixture/SeedActivity.java')}else{@(Get-ChildItem -LiteralPath (Join-Path $project 'src') -Recurse -Filter '*.java' | ForEach-Object FullName)}
+ $sources=if($Target -like 'fixture*'){@(Join-Path $project 'tests/fixture/SeedActivity.java')}else{@(Get-ChildItem -LiteralPath (Join-Path $project 'src') -Recurse -Filter '*.java' | ForEach-Object FullName)}
  if($Target -eq 'tests'){$sources+=Join-Path $project 'tests/instrumentation/SmokeTest.java'}
  Run (Join-Path $javaBin 'javac.exe') (@('-encoding','UTF-8','-source','8','-target','8','-classpath',$platform,'-d',(Join-Path $build 'classes'))+$sources)
  $compiled=@(Get-ChildItem -LiteralPath (Join-Path $build 'classes') -Recurse -Filter '*.class' | Where-Object {$Target -ne 'tests' -or $_.Name -like 'SmokeTest*'} | ForEach-Object FullName)
@@ -56,7 +56,7 @@ try{
  Run (Join-Path $tools 'aapt.exe') $resourceArgs
  Push-Location (Join-Path $build 'dex');try{Run (Join-Path $tools 'aapt.exe') @('add',$unsigned,'classes.dex')}finally{Pop-Location}
  $aligned=Join-Path $build 'aligned.apk';Run (Join-Path $tools 'zipalign.exe') @('-f','4',$unsigned,$aligned)
- $name=if($Target -eq 'app'){'Raven-App-Control-1.1.1-local.apk'}else{"Raven-App-Control-$Target.apk"}
+ $name=if($Target -eq 'app'){'Raven-App-Control-1.2.0-local.apk'}else{"Raven-App-Control-$Target.apk"}
  $apk=Join-Path $OutputDirectory $name
  Run $java @('-jar',(Join-Path $tools 'lib/apksigner.jar'),'sign','--ks',$SigningKey,'--ks-key-alias',$KeyAlias,'--ks-pass','env:RAVEN_CONTROL_STORE_PASS','--key-pass','env:RAVEN_CONTROL_KEY_PASS','--out',$apk,$aligned)
  Run $java @('-jar',(Join-Path $tools 'lib/apksigner.jar'),'verify',$apk)

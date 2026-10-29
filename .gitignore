@@ -17,3 +17,6 @@ dist/
 local.properties
 Thumbs.db
 .DS_Store
+
+# Signed application releases follow the Raven Backup layout.
+!releases/v*/Raven-App-Control-*.apk

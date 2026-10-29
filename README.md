@@ -1,18 +1,18 @@
-<p align="center"><img src="docs/images/icon.png" width="128" alt="Raven App Control icon"></p>
-
 # Raven App Control
+
+<img src="docs/images/icon.png" alt="Raven App Control icon" width="96" />
 
 An Android app for AYN devices that uses the factory root service to disable and re-enable apps while preserving their data, with search, system-app filtering, and protection for essential components.
 
-[Download 1.1.1](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.1.1/Raven-App-Control-1.1.1.apk) · [Latest release](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/latest)
+[Download 1.2.0](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.0/Raven-App-Control-1.2.0.apk) · [Latest release](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/latest)
 
 ## Features
 
 - Switch apps off until you choose to enable them again.
-- Search by app name or package; browse All apps, Enabled and Disabled.
+- Search by app name or package; browse Enabled and Disabled.
 - Show or hide system apps from the three-dot menu.
-- Protect Raven itself, essential Android components, the current launcher, enabled keyboards and active device administrators.
-- Raven Backup-style sidebar and app cards, with red accents and matching icon proportions.
+- Protect Raven itself, Android essentials, platform-signed and non-launchable system components, shared identities, launchers, enabled keyboards, active accessibility services and device administrators.
+- Shared Raven sidebar/card palettes, with light/dark appearance and a color wheel, RGB sliders, hex input and six preset dots.
 - Works offline without ads, analytics, internet permission or a background monitoring service.
 
 ## Compatibility
@@ -39,13 +39,13 @@ Disabling a system app can affect features that depend on it. Protected-app rule
 Compare the APK's SHA-256 with the release's `SHA256SUMS.txt`:
 
 ```powershell
-Get-FileHash .\Raven-App-Control-1.1.1.apk -Algorithm SHA256
+Get-FileHash .\Raven-App-Control-1.2.0.apk -Algorithm SHA256
 ```
 
-Version 1.1.1 SHA-256:
+Version 1.2.0 SHA-256:
 
 ```text
-80af33562a99a8be64b98d49cd961563493fb9e7f4923ad384c1724305e7ce23
+4cd0f5e5d29530238fa6a65b8a36ae850205280b35853fb32f2b3b60d382ddf9
 ```
 
 Release signing-certificate SHA-256:
@@ -60,10 +60,20 @@ The repository includes the app's Java source, resources, manifest, portable Win
 
 See [Building](docs/BUILD.md), [Testing](docs/TESTING.md) and [Architecture](docs/ARCHITECTURE.md).
 
-## Version 1.1.1
+## Version 1.2.0
 
-Matches Raven Backup's icon display method and corner transparency, while retaining the power symbol and red feather. The icon update passed 31 targeted live checks on Odin 2. See [Changelog](CHANGELOG.md).
+Adds Settings, light/dark mode, six-dot accent customization, compact About, centered overflow dots, icon-free confirmations, Enabled/Disabled navigation, and stronger system-app safeguards. This update passed 207 device checks on Odin 2, including sequential search/disable persistence and appearance safeguards. See [Changelog](CHANGELOG.md).
 
 ## License
 
 Licensed under **GPL-3.0-only**, matching Raven Backup. See [LICENSE](LICENSE).
+
+## Repository layout
+
+- `src/`, `res/`, `AndroidManifest.xml`: app source and resources.
+- `build.ps1`: portable Windows build with local development signing by default.
+- `tests/` and `scripts/`: disposable fixture sources and verification helpers.
+- `releases/v1.2.0/`: signed APK, checksum, certificate fingerprint, license and release notes.
+- `docs/`: installation, usage, recovery, removal, build, testing and publishing guides.
+
+See [Release status](RELEASE-STATUS.md), [Contributing](CONTRIBUTING.md), [Security](SECURITY.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).

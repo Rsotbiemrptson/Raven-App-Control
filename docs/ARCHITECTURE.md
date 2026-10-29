@@ -9,3 +9,5 @@
 The service protocol is an observed private OEM interface, not a public Android API. Factory-service availability and permissions may differ across firmware. The app has no exported root-control service or shell-command intent endpoint; only the launcher Activity is exported.
 
 No boot receiver or watcher is needed because Android stores package enabled state. Local preferences store original app states and the visibility option. App data is not deleted by disabling.
+
+Version 1.2.0 serializes package mutations across controller instances. Search only filters fresh Android state; it never applies package changes. The interface has Enabled/Disabled sections and Settings, dynamic light/dark palette, shared color wheel and contrast helpers. Protection also blocks platform-signed system apps and system packages without an enabled launcher; see SECURITY.md.

@@ -23,6 +23,10 @@ public final class Protection {
    DevicePolicyManager policy=(DevicePolicyManager)context.getSystemService(Context.DEVICE_POLICY_SERVICE);
    List<ComponentName> admins=policy.getActiveAdmins();
    if(admins!=null)for(ComponentName admin:admins) reasons.put(admin.getPackageName(),"Active device administrator.");
+   android.view.accessibility.AccessibilityManager accessibility=(android.view.accessibility.AccessibilityManager)context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+   for(android.accessibilityservice.AccessibilityServiceInfo service:accessibility.getEnabledAccessibilityServiceList(android.accessibilityservice.AccessibilityServiceInfo.FEEDBACK_ALL_MASK))if(service.getResolveInfo()!=null&&service.getResolveInfo().serviceInfo!=null)reasons.put(service.getResolveInfo().serviceInfo.packageName,"Active accessibility service. Turn it off in Settings first.");
+   for(ResolveInfo home:pm.queryIntentActivities(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME),PackageManager.MATCH_DISABLED_COMPONENTS))if(home.activityInfo!=null)reasons.put(home.activityInfo.packageName,"Home-screen recovery path. Launchers remain protected.");
+   PackageInfo webview=android.webkit.WebView.getCurrentWebViewPackage();if(webview!=null)reasons.put(webview.packageName,"Current Android WebView provider.");
   } catch(RuntimeException error) {throw new IllegalStateException("Cannot check essential app protection. Try reopening Raven.",error);}
  }
  private void protectHandler(Intent intent,String reason){ResolveInfo r=pm.resolveActivity(intent,PackageManager.MATCH_DEFAULT_ONLY);if(r!=null&&r.activityInfo!=null)reasons.put(r.activityInfo.packageName,reason);}
@@ -30,6 +34,13 @@ public final class Protection {
   String reason=reasons.get(info.packageName);if(reason!=null)return reason;
   if(info.uid%100000<10000)return "Shared system identity; required by Android or device services.";
   if((info.flags&ApplicationInfo.FLAG_PERSISTENT)!=0)return "Persistent system service.";
+  String[] shared=pm.getPackagesForUid(info.uid);if(shared!=null&&shared.length>1)return "Shared app identity; disabling it can affect other packages.";
+  boolean system=(info.flags&(ApplicationInfo.FLAG_SYSTEM|ApplicationInfo.FLAG_UPDATED_SYSTEM_APP))!=0;
+  if(system){
+   if(pm.checkSignatures("android",info.packageName)==PackageManager.SIGNATURE_MATCH)return "Platform-signed system component; protected against startup or recovery failure.";
+   Intent launcher=new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_LAUNCHER).setPackage(info.packageName);
+   if(pm.queryIntentActivities(launcher,0).isEmpty())return "System service, provider or overlay without a launcher; required dependencies cannot be safely established.";
+  }
   return null;
  }
 }

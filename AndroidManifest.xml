@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.raven.control" android:versionCode="3" android:versionName="1.1.1">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.raven.control" android:versionCode="4" android:versionName="1.2.0">
  <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="35"/>
  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
  <application android:label="Raven App Control" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher" android:theme="@style/RavenTheme" android:allowBackup="false" android:supportsRtl="true" android:debuggable="false">

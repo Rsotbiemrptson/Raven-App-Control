@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 — 2026-10-29
+
+- Add Settings, six accent presets, color wheel/RGB/hex and light/dark/system modes.
+- Replace All apps navigation with Enabled and Disabled only.
+- Compact non-scrolling About focused on App Control, with embedded license.
+- Remove switch-instruction footer and toast app icons; shorten confirmations.
+- Center overflow dots and use the shared Raven surface palette.
+- Verify sequential app searches/disables remain independent across activity recreation.
+- Serialize engine mutations and protect platform-signed/non-launchable system components and additional active services.
+
+
 ## 1.1.1 — 2026-10-25
 
 - Match Raven Backup's Android icon loading in the sidebar, header and About.
