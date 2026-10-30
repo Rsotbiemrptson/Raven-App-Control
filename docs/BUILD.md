@@ -37,3 +37,23 @@ Build fixture and instrumentation targets with the same signing identity:
 ```
 
 Device test instructions are in [TESTING.md](TESTING.md). Private release signing keys and automated publishing credentials are deliberately excluded.
+
+## Rebuild after moving or cleaning the checkout
+
+Run the script from the repository root. The public build resolves source and default output paths from the script location, so the checkout can be moved, including into a folder whose name contains spaces.
+
+To choose separate temporary folders:
+
+```powershell
+& .\build.ps1 -BuildDirectory '.\.build' -OutputDirectory '.\dist'
+```
+
+The optional parameters work with either the SDK/JDK configuration above or `-Toolchain`. For example, with the shared Workbench toolchain:
+
+```powershell
+& .\build.ps1 -Toolchain 'C:\APK-Workbench\Toolchain'
+```
+
+After verification, `.build/` and `dist/` can be moved out of the checkout; the script recreates them on the next build. Keep `.local/development.jks` to retain the signing identity of your local builds. Preserve any custom signing key separately as well. No previous build outputs are required to rebuild.
+
+On October 29, 2026, the maintained workstation source rebuilt the signed 1.2.0 release byte-for-byte after relocation. The public build uses the portable script above and a separate development key; compare its uncompressed APK payload entries rather than expecting the release APK checksum. The app source, resources, manifest and test sources were checked against the maintained source and matched.
