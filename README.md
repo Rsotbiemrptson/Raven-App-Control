@@ -6,9 +6,9 @@
 
 Disable and re-enable apps on AYN devices while preserving their installed files and data, with search, system-app filtering and protection for essential components.
 
-**Current release: 1.2.0** · Package: `dev.raven.control` · Version code: `4` · License: **GPL-3.0-only**
+**Current release: 1.2.1** · Package: `dev.raven.control` · Version code: `5` · License: **GPL-3.0-only**
 
-[Download the APK](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.0/Raven-App-Control-1.2.0.apk) · [Release notes and checksums](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/tag/v1.2.0)
+[Download the APK](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.1/Raven-App-Control-1.2.1.apk) · [Release notes and checksums](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/tag/v1.2.1)
 
 ## Features
 
@@ -32,7 +32,7 @@ Android 11/API 30 or later is required to install. Meeting that Android version 
 3. Open Raven App Control and wait for **AYN root connected**.
 4. Turn an app's switch off to disable it. Open **Disabled** and turn the switch on to restore it.
 
-Disabled apps retain their installed files and data. Android keeps the disabled state across restarts; Raven does not need to stay running. The Show system apps setting applies to every list, including Disabled.
+Disabled apps retain their installed files and data. Android keeps the disabled state across restarts; Raven does not need to stay running. The System apps switch beside Search applies to both lists.
 
 **Re-enable apps before uninstalling Raven.** Uninstalling the controller does not undo Android's disabled-app settings. Android's App info screen may offer Enable; an authorized ADB connection can also restore a package with `adb shell pm enable --user 0 PACKAGE`.
 
@@ -43,13 +43,13 @@ Disabling a system app can affect features that depend on it. Protected-app rule
 Compare the APK's SHA-256 with the release's `SHA256SUMS.txt`:
 
 ```powershell
-Get-FileHash .\Raven-App-Control-1.2.0.apk -Algorithm SHA256
+Get-FileHash .\Raven-App-Control-1.2.1.apk -Algorithm SHA256
 ```
 
-Version 1.2.0 SHA-256:
+Version 1.2.1 SHA-256:
 
 ```text
-4cd0f5e5d29530238fa6a65b8a36ae850205280b35853fb32f2b3b60d382ddf9
+c43d6060d7629e4719a402005dc20ab6473a9cc322a30f9528b5d2a0e8857818
 ```
 
 Release signing-certificate SHA-256:
@@ -64,9 +64,9 @@ The repository includes the app's Java source, resources, manifest, portable Win
 
 See [Building](docs/BUILD.md), [Testing](docs/TESTING.md) and [Architecture](docs/ARCHITECTURE.md).
 
-## Version 1.2.0
+## Version 1.2.1
 
-Adds Settings, light/dark mode, six-dot accent customization, compact About, centered overflow dots, icon-free confirmations, Enabled/Disabled navigation, and stronger system-app safeguards. This update passed 207 device checks on Odin 2, including sequential search/disable persistence and appearance safeguards. See [Changelog](CHANGELOG.md).
+Moves the System apps switch beside Search and adds Report an issue to the three-dot menu. Tested as an in-place upgrade on Odin 3 with a disposable app disabled. See [Changelog](CHANGELOG.md).
 
 ## License
 
@@ -77,7 +77,7 @@ Licensed under **GPL-3.0-only**, matching Raven Backup. See [LICENSE](LICENSE).
 - `src/`, `res/`, `AndroidManifest.xml`: app source and resources.
 - `build.ps1`: portable Windows build with local development signing by default.
 - `tests/` and `scripts/`: disposable fixture sources and verification helpers.
-- `releases/v1.2.0/`: signed APK, checksum, certificate fingerprint, license and release notes.
+- `releases/v1.2.1/`: checksum, certificate fingerprint, license and release notes. APKs are available from GitHub Releases.
 - `docs/`: installation, usage, recovery, removal, build, testing and publishing guides.
 
 See [Release status](RELEASE-STATUS.md), [Contributing](CONTRIBUTING.md), [Security](SECURITY.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).

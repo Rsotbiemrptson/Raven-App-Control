@@ -1,6 +1,6 @@
 # Recovery
 
-Open Disabled and switch the affected app on. If it is a system app, enable **Show system apps** in the three-dot menu first. Protection does not prevent re-enabling.
+Open Disabled and switch the affected app on. If it is a system app, enable **System apps** beside Search first. Protection does not prevent re-enabling.
 
 Android's App info screen may also offer **Enable**. With a previously authorized ADB connection, the package manager can restore a known package in the owner profile:
 

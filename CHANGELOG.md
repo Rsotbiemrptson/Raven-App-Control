@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 — November 6, 2026
+
+- Moved System apps beside Search.
+- Added Report an issue to the three-dot menu.
+
+
 ## 1.2.0 — 2026-10-29
 
 - Add Settings, six accent presets, color wheel/RGB/hex and light/dark/system modes.

@@ -1,6 +1,6 @@
 # Removal
 
-1. In Disabled, re-enable apps you want available. Turn on Show system apps to review disabled system apps.
+1. In Disabled, re-enable apps you want available. Turn on System apps beside Search to review disabled system apps.
 2. Confirm those apps work normally.
 3. Uninstall Raven App Control through Android.
 

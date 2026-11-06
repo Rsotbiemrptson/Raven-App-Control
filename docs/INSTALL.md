@@ -1,6 +1,6 @@
 # Installation
 
-Download the signed APK from [GitHub Releases](https://github.com/Rsotbiemrptson/Raven-App-Control/releases) or `releases/v1.2.0/` and compare it with the accompanying SHA256SUMS.txt.
+Download the signed APK from [GitHub Releases](https://github.com/Rsotbiemrptson/Raven-App-Control/releases) and compare it with the accompanying SHA256SUMS.txt.
 
 Open the APK in a device file manager. Allow installation from that file manager if Android asks. An update signed with the existing release identity can be installed over the previous release without uninstalling or resetting app preferences.
 

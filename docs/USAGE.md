@@ -4,7 +4,7 @@
 
 **Disabled** lists disabled applications and provides switches to restore them. Each app has its own original-state record. Re-enabling one app does not re-enable another. Installed APKs and private data remain on the device.
 
-The three-dot menu contains **Show system apps**, **Settings** and **About**. There is no All apps section or Help item. Show system apps is saved and applies to both lists. Protected system apps can be viewed and, if disabled, re-enabled; protected enabled apps cannot be switched off.
+The **System apps** switch beside Search is saved and applies to both lists. The three-dot menu contains **Settings**, **About**, and **Report an issue**. The issue form opens on GitHub with editable prompts and the app version. Protected system apps can be viewed and, if disabled, re-enabled; protected enabled apps cannot be switched off.
 
 Settings puts **Accent color** and **Light/Dark mode** on one row. Accent choices include a hue/saturation wheel, RGB sliders, #RRGGBB input, three other Raven-app colors (Backup green, System Control orange, Gamepad blue), and purple/yellow/white. **Default** restores App Control red. Appearance can be Light, Dark or Follow system. The sidebar/card colors follow the shared Raven palette and accent text adjusts for contrast.
 

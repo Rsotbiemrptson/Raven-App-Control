@@ -14,7 +14,7 @@ Or supply paths explicitly:
 & .\build.ps1 -AndroidSdk 'D:\Android\Sdk' -JavaHome 'D:\Java\jdk'
 ```
 
-Output: `dist/Raven-App-Control-1.2.0-local.apk`, with a SHA-256 sidecar. Intermediates go in `.build/`; a development keystore is generated under `.local/`. These directories are ignored by Git.
+Output: `dist/Raven-App-Control-1.2.1-local.apk`, with a SHA-256 sidecar. Intermediates go in `.build/`; a development keystore is generated under `.local/`. These directories are ignored by Git.
 
 The development key uses the conventional `android` password and is only for local builds. It is unrelated to the preserved private release identity. A differently signed APK cannot update the published app. Re-enable controlled apps before uninstalling the release to try a local build.
 

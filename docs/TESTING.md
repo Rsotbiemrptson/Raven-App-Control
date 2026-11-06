@@ -13,7 +13,7 @@ Build app and both fixtures/tests with one signing identity:
 Install all four packages on the intended unlocked test device, seed both fixtures and run:
 
 ```text
-adb -s SERIAL install -r dist/Raven-App-Control-1.2.0-local.apk
+adb -s SERIAL install -r dist/Raven-App-Control-1.2.1-local.apk
 adb -s SERIAL install -r dist/Raven-App-Control-fixture.apk
 adb -s SERIAL install -r dist/Raven-App-Control-fixture2.apk
 adb -s SERIAL install -r dist/Raven-App-Control-tests.apk
