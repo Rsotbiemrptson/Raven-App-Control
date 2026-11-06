@@ -6,9 +6,9 @@
 
 Disable and re-enable apps on AYN devices while preserving their installed files and data, with search, system-app filtering and protection for essential components.
 
-**Current release: 1.2.1** · Package: `dev.raven.control` · Version code: `5` · License: **GPL-3.0-only**
+**Current release: 1.2.2** · Package: `dev.raven.control` · Version code: `6` · License: **GPL-3.0-only**
 
-[Download the APK](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.1/Raven-App-Control-1.2.1.apk) · [Release notes and checksums](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/tag/v1.2.1)
+[Download the APK](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/download/v1.2.2/Raven-App-Control-1.2.2.apk) · [Release notes and checksums](https://github.com/Rsotbiemrptson/Raven-App-Control/releases/tag/v1.2.2)
 
 ## Features
 
@@ -43,13 +43,13 @@ Disabling a system app can affect features that depend on it. Protected-app rule
 Compare the APK's SHA-256 with the release's `SHA256SUMS.txt`:
 
 ```powershell
-Get-FileHash .\Raven-App-Control-1.2.1.apk -Algorithm SHA256
+Get-FileHash .\Raven-App-Control-1.2.2.apk -Algorithm SHA256
 ```
 
-Version 1.2.1 SHA-256:
+Version 1.2.2 SHA-256:
 
 ```text
-c43d6060d7629e4719a402005dc20ab6473a9cc322a30f9528b5d2a0e8857818
+1f5e2b5e5ba0ddc3839031a9c66972f43edbc28427158e40c1c32889664f0b69
 ```
 
 Release signing-certificate SHA-256:
@@ -64,9 +64,9 @@ The repository includes the app's Java source, resources, manifest, portable Win
 
 See [Building](docs/BUILD.md), [Testing](docs/TESTING.md) and [Architecture](docs/ARCHITECTURE.md).
 
-## Version 1.2.1
+## Version 1.2.2
 
-Moves the System apps switch beside Search and adds Report an issue to the three-dot menu. Tested as an in-place upgrade on Odin 3 with a disposable app disabled. See [Changelog](CHANGELOG.md).
+Matches the shared Raven About layout. The About dialog fit without scrolling in portrait and landscape on Odin 3. See [Changelog](CHANGELOG.md).
 
 ## License
 
@@ -77,7 +77,7 @@ Licensed under **GPL-3.0-only**, matching Raven Backup. See [LICENSE](LICENSE).
 - `src/`, `res/`, `AndroidManifest.xml`: app source and resources.
 - `build.ps1`: portable Windows build with local development signing by default.
 - `tests/` and `scripts/`: disposable fixture sources and verification helpers.
-- `releases/v1.2.1/`: checksum, certificate fingerprint, license and release notes. APKs are available from GitHub Releases.
+- `releases/v1.2.2/`: checksum, certificate fingerprint, license and release notes. APKs are available from GitHub Releases.
 - `docs/`: installation, usage, recovery, removal, build, testing and publishing guides.
 
 See [Release status](RELEASE-STATUS.md), [Contributing](CONTRIBUTING.md), [Security](SECURITY.md) and [Third-party notices](THIRD_PARTY_NOTICES.md).

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2 — November 6, 2026
+
+- Standardized About width, icon, type sizes and spacing across the Raven apps.
+
+
 ## 1.2.1 — November 6, 2026
 
 - Moved System apps beside Search.

@@ -123,7 +123,41 @@ public final class MainActivity extends Activity {
      .setPositiveButton("Close",null).show();
   }
  }
- private void about(){LinearLayout body=column();body.setTag("about-content");body.setPadding(dp(24),dp(8),dp(24),dp(4));LinearLayout heading=row();add(heading,appIcon(),64,64);LinearLayout names=column();names.setPadding(dp(14),0,0,0);TextView name=text("Raven App Control",22,TEXT);name.setTypeface(null,Typeface.BOLD);add(names,name,-1,-2);add(names,text("Version "+version(),13,ACCENT_TEXT),-1,-2);heading.addView(names,new LinearLayout.LayoutParams(0,-2,1));add(body,heading,-1,-2);gap(body,8);add(body,text("Your apps. Your control.",16,ACCENT_TEXT),-1,-2);gap(body,8);add(body,text("Disable apps you don't need and restore them when you choose. Uses AYN's factory root service and keeps installed app data.",14,TEXT),-1,-2);gap(body,8);add(body,text("Build date: 2026-10-29\nCreator: Rsotbiemrptson",13,MUTED),-1,-2);gap(body,8);add(body,text("Open source · GNU GPL v3 only",13,MUTED),-1,-2);TextView license=text("License",14,ACCENT_TEXT);license.setMinHeight(dp(40));license.setGravity(Gravity.CENTER_VERTICAL);license.setPaintFlags(license.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);license.setFocusable(true);license.setOnClickListener(v->license());add(body,license,-2,40);AlertDialog d=dialog().setTitle("About").setView(body).setPositiveButton("Close",null).show();d.getWindow().setLayout(Math.min(getResources().getDisplayMetrics().widthPixels-dp(40),dp(600)),-2);}
+ private void about(){
+  LinearLayout body=column();
+  body.setTag("about-content");
+  body.setPadding(dp(24),dp(8),dp(24),dp(4));
+  ImageView icon=appIcon();
+  LinearLayout.LayoutParams iconLayout=new LinearLayout.LayoutParams(dp(72),dp(72));
+  iconLayout.gravity=Gravity.CENTER_HORIZONTAL;
+  body.addView(icon,iconLayout);
+  gap(body,8);
+  TextView name=text("Raven App Control",22,TEXT);
+  name.setTypeface(null,Typeface.BOLD);
+  name.setGravity(Gravity.CENTER);
+  add(body,name,-1,-2);
+  TextView release=text("Version "+version(),13,ACCENT_TEXT);
+  release.setGravity(Gravity.CENTER);
+  add(body,release,-1,-2);
+  gap(body,8);
+  add(body,text("Your apps. Your control.",16,ACCENT_TEXT),-1,-2);
+  gap(body,8);
+  add(body,text("Disable apps with AYN factory root and restore them with their data intact.",14,TEXT),-1,-2);
+  gap(body,8);
+  add(body,text("Build date: 2026-11-06\nCreator: Rsotbiemrptson",13,MUTED),-1,-2);
+  gap(body,8);
+  add(body,text("Open source · GNU GPL v3 only",13,MUTED),-1,-2);
+  TextView license=text("License",14,ACCENT_TEXT);
+  license.setMinHeight(dp(44));
+  license.setGravity(Gravity.CENTER_VERTICAL|Gravity.START);
+  license.setPaintFlags(license.getPaintFlags()|Paint.UNDERLINE_TEXT_FLAG);
+  license.setFocusable(true);
+  license.setOnClickListener(v->license());
+  add(body,license,-2,-2);
+  AlertDialog popup=dialog().setTitle("About").setView(body).setPositiveButton("Close",null).show();
+  int width=Math.min(getResources().getDisplayMetrics().widthPixels-dp(40),dp(480));
+  popup.getWindow().setLayout(width,WindowManager.LayoutParams.WRAP_CONTENT);
+ }
  private void license(){try(java.io.InputStream in=getResources().openRawResource(getResources().getIdentifier("gpl","raw",getPackageName()))){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] bytes=new byte[4096];int n;while((n=in.read(bytes))!=-1)out.write(bytes,0,n);dialog().setTitle("GNU GPL v3 only").setMessage(new String(out.toByteArray(),java.nio.charset.StandardCharsets.UTF_8)).setPositiveButton("Close",null).show();}catch(Exception e){dialog().setTitle("License").setMessage("License text could not be opened.").setPositiveButton("Close",null).show();}}
  private final class AppAdapter extends BaseAdapter{public int getCount(){return shown.size();}public Object getItem(int n){return shown.get(n);}public long getItemId(int n){return n;}public View getView(int position,View old,ViewGroup parent){AppEntry e=shown.get(position);LinearLayout card=column();card.setTag("app-card");card.setBackground(shape(CARD,18));card.setPadding(dp(landscape?16:18),dp(landscape?10:14),dp(landscape?16:18),dp(landscape?10:14));LinearLayout line=row();ImageView icon=new ImageView(MainActivity.this);icon.setImageDrawable(e.info.loadIcon(getPackageManager()));icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);icon.setOnClickListener(v->details(e));add(line,icon,40,40);LinearLayout labels=column();labels.setPadding(dp(14),0,dp(8),0);TextView name=text(e.label,16,TEXT);name.setTypeface(null,Typeface.BOLD);name.setMaxLines(1);name.setEllipsize(TextUtils.TruncateAt.END);add(labels,name,-1,-2);TextView pkg=text(e.packageName,11,MUTED);pkg.setMaxLines(1);pkg.setEllipsize(TextUtils.TruncateAt.END);add(labels,pkg,-1,-2);line.addView(labels,new LinearLayout.LayoutParams(0,-2,1));String state=e.enabled?"Enabled":"Disabled";if(e.protection!=null)state+=" · Protected";if(landscape){LinearLayout meta=column();add(meta,text(e.system?"System app":"User app",11,MUTED),-1,-2);TextView value=text(state,11,e.protection==null?ACCENT_TEXT:MUTED);value.setMaxLines(1);value.setEllipsize(TextUtils.TruncateAt.END);add(meta,value,-1,-2);add(line,meta,166,-2);}labels.setOnClickListener(v->details(e));labels.setFocusable(true);labels.setContentDescription(e.label+", "+state+". App details");Switch toggle=new Switch(MainActivity.this);toggle.setChecked(e.enabled);toggle.setShowText(false);toggle.setMinWidth(dp(48));toggle.setMinimumHeight(dp(48));ColorStateList tint=new ColorStateList(new int[][]{new int[]{android.R.attr.state_checked},new int[]{}},new int[]{ACCENT_TEXT,MUTED});toggle.setThumbTintList(tint);toggle.setTrackTintList(tint);toggle.setEnabled(!busy&&rootReady&&(!e.enabled||e.protection==null));toggle.setAlpha(toggle.isEnabled()?1f:.42f);toggle.setContentDescription(e.label+" — "+(e.enabled?"enabled":"disabled")+(e.protection==null?"":". "+e.protection));toggle.setOnClickListener(v->{toggle.setChecked(e.enabled);request(e);});add(line,toggle,48,48);add(card,line,-1,-2);if(!landscape){gap(card,8);add(card,text((e.system?"System app":"User app")+" · "+state,11,e.protection==null?ACCENT_TEXT:MUTED),-1,-2);}return card;}}
 }

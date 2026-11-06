@@ -56,7 +56,7 @@ try{
  Run (Join-Path $tools 'aapt.exe') $resourceArgs
  Push-Location (Join-Path $build 'dex');try{Run (Join-Path $tools 'aapt.exe') @('add',$unsigned,'classes.dex')}finally{Pop-Location}
  $aligned=Join-Path $build 'aligned.apk';Run (Join-Path $tools 'zipalign.exe') @('-f','4',$unsigned,$aligned)
- $name=if($Target -eq 'app'){'Raven-App-Control-1.2.1-local.apk'}else{"Raven-App-Control-$Target.apk"}
+ $name=if($Target -eq 'app'){'Raven-App-Control-1.2.2-local.apk'}else{"Raven-App-Control-$Target.apk"}
  $apk=Join-Path $OutputDirectory $name
  Run $java @('-jar',(Join-Path $tools 'lib/apksigner.jar'),'sign','--ks',$SigningKey,'--ks-key-alias',$KeyAlias,'--ks-pass','env:RAVEN_CONTROL_STORE_PASS','--key-pass','env:RAVEN_CONTROL_KEY_PASS','--out',$apk,$aligned)
  Run $java @('-jar',(Join-Path $tools 'lib/apksigner.jar'),'verify',$apk)
